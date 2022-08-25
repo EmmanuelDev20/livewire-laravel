@@ -33,7 +33,8 @@
     <input
         wire:model="search"
         type="search"
-        placeholder="Buscar...">
+        placeholder="Search...">
+    <h1>{{ $search }}</h1>
     <ul>
         @foreach ($articles as $article)
             <li>

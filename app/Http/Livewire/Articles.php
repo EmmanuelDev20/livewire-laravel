@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Article;
 use Livewire\Component;
 
 class Articles extends Component
@@ -22,20 +23,16 @@ class Articles extends Component
     // public $tags = '';
 
     // public $category = '';
+
     public $search = '';
+
+    public $article;
 
     public function render()
     {
+        $this->articles = Article::where('title', 'LIKE', '%'.$this->search.'%')->get();
         return view('livewire.articles', [
-            // 'articles' => \App\Models\Article::all()
-            'articles' => \App\Models\Article::where('title', 'LIKE', '%'.$this->search.'%')->get()
+            'articles' => $this->articles
         ]);
     }
 }
-
-
-// Route::get('/search', function () {
-//     return view('partials.users', [
-//         'users' => User::where('name', 'LIKE', '%'.request('q').'%')->get()
-//     ]);
-// });
